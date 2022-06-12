@@ -139,7 +139,7 @@ async def resetgb(client, message: Message, _):
 @language
 async def resetwlcm(client, message: Message, _):
     db = Greetings(message.chat.id)
-    text = "Hey {first}, welcome to {chatname}!"
+    text = "مرحبًا {first} ، مرحبًا بك في {chatname}!"
     db.set_welcome_text(text)
     await message.reply_text(_["welcome14"])
     return
@@ -172,9 +172,9 @@ async def welcome(_, message: Message):
         if is_user_fban(fed_id, user_id):
                 fed_reason = get_fed_reason(fed_id, user_id)
                 text = (
-                        "**This user is banned in the current federation:**\n\n"
-                        f"User: {member.mention} (`{member.id}`)\n"
-                        f"Reason: `{fed_reason}`"
+                        "**هذا المستخدم محظور في الاتحاد الحالي:**\n\n"
+                        f"المستخدم: {member.mention} (`{member.id}`)\n"
+                        f"سبب: `{fed_reason}`"
                     )
 
                 if await app.chat.ban_member(chat_id, user_id): 
@@ -187,39 +187,40 @@ async def welcome(_, message: Message):
         if member.id == BOT_ID:
                 await message.reply_text(
                     f"""
-Thanks for adding me to your {group_name}! Don't forget follow
-my news channel @Theszrosebot.
+شكرًا لإضافتي إلى {group_name}! لا تنسى متابعة
+قناة السورس ⚡️ @XTIORY.
 
-**New to Me, Touch the below button and start me in PM**
+**جديد بالنسبة لي ، المس الزر أدناه وابدأ في PM**
                     """,
                     reply_markup=InlineKeyboardMarkup(
             [
-                InlineKeyboardButton("quick start guide", url="http://t.me/szrosebot?start=help"),
+                InlineKeyboardButton("𝗔𝗕𝗗𝗢 𝗔𝗦𝗜𝗟 - ســـــــــيزر", url="http://t.me/SEZR_X"),
+                InlineKeyboardButton("||ᯓ˹ 𝐕𝘼𝙈𝘽𝙄𝙍𖣥⃟⃟⃟⃟⃟🇵🇸فمـبــيرـ͢）⛧||", url="http://t.me/SXxlllllllllllllllllllllllllllxX"),
             ]))
                 await app.send_message(
                 chat_id=LOG_GROUP_ID,
                 text=(
-                    f"I've been added to `{chat_title}` with ID: `{chat_id}`\n"
-                    f"Added by: @{message.from_user.username} ( `{message.from_user.id}` )"
+                    f"لقد تمت إضافتي إلى `{chat_title}` بالمعرف: `{chat_id}`\n"
+                    f"أضيفت من قبل: @{message.from_user.username} ( `{message.from_user.id}` )"
                 )
             )
                 return     
         if member.id == OWNER_ID:
                await app.send_message(
                 message.chat.id,
-                "Wow ! Owner has just joined your chat.",
+                "رائع ! انضم المالك للتو إلى محادثتك.",
             )
                return
         if member.id == 1467358214:#for @supunma 
                await app.send_message(
                 message.chat.id,
-                "Wow ! Developer has just joined your chat.",
+                "رائع ! المطور قد انضم للتو إلى الدردشة الخاصة بك.",
             )
                return       
         if member.is_bot:
                adder = message.from_user.mention
                botname = member.username
-               await message.reply_text(f" @{botname} was added by {adder} 🤖", quote=False)
+               await message.reply_text(f" @{botname} تمت إضافته بواسطة {adder} 🤖", quote=False)
                return
         chat_id = message.chat.id
         captcha = await send_captcha(app, message)
@@ -326,11 +327,11 @@ async def welcome(client, message: Message, _):
     if len(args) >= 2:
         if args[1].lower() == "noformat":
             await message.reply_text(
-        f"""Current welcome settings:-
-           • Welcome power: {status}
-           • Clean Welcome: {db.get_current_cleanwelcome_settings()}
-           • Cleaning service: {db.get_current_cleanservice_settings()}
-           • Welcome text in no formating:
+        f"""إعدادات الترحيب الحالية:-
+           • نرحب بالقوة: {status}
+           • ترحيب نظيف: {db.get_current_cleanwelcome_settings()}
+           • خدمة التنظيف: {db.get_current_cleanservice_settings()}
+           • نرحب النص في أي شكل:
             """,
             )
             await app.send_message(message.chat.id, text=oo, parse_mode=None)
@@ -346,11 +347,11 @@ async def welcome(client, message: Message, _):
         await message.reply_text(_["welcome17"])
         return
     await message.reply_text(
-    f"""Current welcome settings:-
-    • Welcome power: `{status}`
-    • Clean Welcome: `{db.get_current_cleanwelcome_settings()}`
-    • Cleaning service: `{db.get_current_cleanservice_settings()}`
-    • Welcome text:
+    f"""إعدادات الترحيب الحالية:-
+    • نرحب بالقوة: `{status}`
+    • ترحيب نظيف: `{db.get_current_cleanwelcome_settings()}`
+    • خدمة التنظيف: `{db.get_current_cleanservice_settings()}`
+    • نص ترحيبي:
     """,
     )
     tek, button = await parse_button(oo)
@@ -371,11 +372,11 @@ async def goodbye(client, message: Message, _):
     if len(args) >= 2:
         if args[1].lower() == "noformat":
             await message.reply_text(
-            f"""Current goodbye settings:-
-            • Goodbye power: `{status}`
-            • Clean Goodbye: `{db.get_current_cleangoodbye_settings()}`
+            f"""إعدادات الوداع الحالية:-
+            • وداعا القوة: `{status}`
+            • نظيف وداعا: `{db.get_current_cleangoodbye_settings()}`
             • Cleaning service: `{db.get_current_cleanservice_settings()}`
-            • Goodbye text in no formating:
+            • وداعا النص في أي شكل:
             """,
             )
             await app.send_message(message.chat.id, text=oo, parse_mode=None)
@@ -406,20 +407,20 @@ async def goodbye(client, message: Message, _):
 
 __MODULE__ = f"{Greeting}"
 __HELP__ = """
-Give your members a warm welcome with the greetings module! Or a sad goodbye... Depends!
+رحب بأعضائك ترحيبًا حارًا مع وحدة التحيات! أو وداعا حزينا .. يتوقف!
 
-**Admin commands:**
-- /welcome `<yes/no/on/off>`: Enable/disable welcomes messages.
-- /goodbye `<yes/no/on/off>`: Enable/disable goodbye messages.
-- /setwelcome `<text>`: Set a new welcome message. Supports markdown, buttons, and fillings.
-- /resetwelcome: Reset the welcome message.
-- /setgoodbye `<text>`: Set a new goodbye message. Supports markdown, buttons, and fillings.
-- /resetgoodbye: Reset the goodbye message.
-- /cleanservice `<yes/no/on/off>`: Delete all service messages. Those are the annoying 'x joined the group' notifications you see when people join.
-- /cleanwelcome `<yes/no/on/off>`: Delete old welcome messages. When a new person joins, or after 5 minutes, the previous message will get deleted.
+**أوامر المسؤول:**
+- /welcome `<نعم / لا / تشغيل / إيقاف> `: تمكين / تعطيل رسائل الترحيب.
+- /goodbye "<نعم / لا / تشغيل / إيقاف>`: تمكين / تعطيل رسائل الوداع.
+- /setwelcome `<text>`: قم بتعيين رسالة ترحيب جديدة. يدعم تخفيض السعر والأزرار والحشوات.
+- /resetwelcome: أعد تعيين رسالة الترحيب.
+- /setgoodbye `<text> `: تعيين رسالة وداع جديدة. يدعم تخفيض السعر والأزرار والحشوات.
+- /resetgoodbye: أعد تعيين رسالة الوداع.
+- /cleanservice `<نعم / لا / تشغيل / إيقاف> `: حذف كافة رسائل الخدمة. هذه هي إشعارات "x" المزعجة التي تنضم إلى المجموعة "التي تراها عند انضمام الأشخاص.
+- /cleanwelcome `<نعم / لا / تشغيل / إيقاف> `: حذف رسائل الترحيب القديمة. عند انضمام شخص جديد ، أو بعد 5 دقائق ، سيتم حذف الرسالة السابقة.
 
 **Examples:**
-- Get the welcome message without any formatting
+- احصل على رسالة الترحيب بدون أي تنسيق
 - /welcome noformat
 """
 __helpbtns__ = (
