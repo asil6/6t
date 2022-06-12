@@ -48,7 +48,7 @@ async def sticker_id(_, message: Message):
 
 #get sticker 
 
-@app.on_message(filters.command("getsticker") & ~filters.edited)
+@app.on_message(filters.command("تحويل") & ~filters.edited)
 async def sticker_image(_, message: Message):
     r = message.reply_to_message
 
